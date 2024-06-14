@@ -41,11 +41,17 @@ def birdeye_token_overview(token_address):
 
     url = "https://public-api.birdeye.so/defi/token_overview"
 
-    headers = {"x-chain": "solana", "X-API-KEY": config("BIRDEYE_API_KEY")}
+    headers = {
+        "accept": "application/json",
+        "x-chain": "solana",
+        "X-API-KEY": config("BIRDEYE_API_KEY"),
+    }
 
     params = {"address": token_address}
 
     response = requests.get(url, headers=headers, params=params)
+
+    pprint(response)
 
     if response.status_code == 200:
         return response.json()

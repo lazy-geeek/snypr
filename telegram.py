@@ -54,9 +54,13 @@ async def main():
             for url_entity, inner_text in msg.get_entities_text(MessageEntityTextUrl):
                 token_url = url_entity.url
                 token = inner_text
+                token_address = get_token_from_url(token_url)
                 if token == base_token:
+
+                    # token_info = birdeye_token_overview(token_address)
+
                     print(
-                        f"{current_timestamp()} {pair} - Liquidiy: {int(liquidity):,} - {get_token_from_url(token_url)}"
+                        f"{current_timestamp()} {pair} - Liquidiy: {int(liquidity):,} - {token_address}"
                     )
 
     # Run the client until disconnected
